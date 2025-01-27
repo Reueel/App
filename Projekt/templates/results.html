@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data</title>
+</head>
+<body>
+    <h1>Weather Measurements</h1>
+
+    <!-- Sprawdzamy, czy data_list nie jest pusta -->
+    {% if data_list %}
+        <ul>
+            <!-- Pętla Jinja2 iterująca po wszystkich elementach w data_list -->
+            {% for item in data_list %}
+                <li>
+                    <h2>{{ item.filename }}</h2>
+                    <!-- Wyświetlanie zawartości w formacie JSON -->
+                    <pre>{{ item.content | tojson(indent=4) }}</pre>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Jeśli data_list jest pusta, wyświetlimy komunikat -->
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>
+
