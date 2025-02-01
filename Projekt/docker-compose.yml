@@ -2,7 +2,7 @@ services:
 
   weather_requester:
     build: .
-    #container_name: weather_requester
+    container_name: weather_requester
     environment:
       - LOCATION=2178
       - MQTT_BROKER=167.172.164.168
