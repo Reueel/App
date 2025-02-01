@@ -1,7 +1,3 @@
-print("start")
-
-
-
 import os
 import json
 import time
@@ -17,7 +13,6 @@ MQTT_PASSWORD = os.getenv("MQTT_PASSWORD", "sys-wbud")  # Hasło
 
 class WeatherRequester:
     def __init__(self, location_id, data_dir):
-        print("start init wether requester")
         self.location_id = location_id
         self.client = OpenAQ(api_key='KEY')
         self.data_dir = data_dir  
@@ -69,17 +64,16 @@ class WeatherRequester:
             return json.dumps({"error": f"Error fetching sensor data: {str(e)}"})
 
     def main(self):
-        while True:
-            print("collecting weather")
-            data = self.fetch_data()
-            self.send_to_mqtt(data)
-            print(data)
-            time.sleep(30)  # Odczekanie 30 sekund
+        print("Zbieram dane")
+        data = self.fetch_data()
+        self.send_to_mqtt(data)
+        print(data)
+        time.sleep(30)  # Odczekanie 30 sekund
 
 print("before main")
 if __name__ == "__main__":
-    print("name is main")
     location = os.getenv("LOCATION", "2178")
     dir = "data"
     requester = WeatherRequester(location, dir)
-    requester.main()
+    while True:
+        requester.main()
