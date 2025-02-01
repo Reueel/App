@@ -17,8 +17,7 @@ class WeatherRequester:
         self.client = OpenAQ(api_key='KEY')
         self.data_dir = data_dir  
         os.makedirs(self.data_dir, exist_ok=True)  # Sprawdzanie lokalizacji zapisu
-        #self.mqtt_client = mqtt.Client()
-        self.mqtt_client = None
+        self.mqtt_client = mqtt.Client()
 
     #Publikujemy dane z pomocą mqtt
     def send_to_mqtt(self, data):
