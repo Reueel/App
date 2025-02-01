@@ -78,16 +78,7 @@ def render_html():
 
 if __name__ == "__main__":
     # Pobranie lokalizacji z zmiennych środowiskowych
-    location = os.getenv("LOCATION", "2178")
-    
+    location = os.getenv("LOCATION", "2178")    
     mqtt_init()
-    '''
-    # Utworzenie instancji WeatherRequester
-    requester = WeatherRequester(location, dir)
-    # Uruchomienie WeatherRequester w osobnym wątku
-    requester_thread = threading.Thread(target=requester.main)
-    requester_thread.daemon = True  # Ustawienie wątku jako daemon (requester to while true loop więc ustawiając go jako daemon to wylaczymy go z zamknieciem main)
-    requester_thread.start()
-    '''
     # Uruchomienie serwera Flask
     app.run(host="0.0.0.0", port=9361, debug=True)
