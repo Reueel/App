@@ -1,6 +1,6 @@
 services:
 
-  weather_requester2:
+  weather_requester:
     build: .
     #container_name: weather_requester
     environment:
@@ -16,8 +16,7 @@ services:
     #   - .:/app
     ports:
       - "5678:5678"
-    #command: ["python", "weather_requester.py"]
-    command: ["python", "tmp.py"]
+    command: ["python", "weather_requester.py"]
 
   flask_app:
     build: .
@@ -31,7 +30,7 @@ services:
       - FLASK_ENV=development
     command: ["python", "main.py"]
     depends_on:
-      - weather_requester2
+      - weather_requester
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9361"]
